@@ -1,0 +1,31 @@
+{% load static %}
+<header class="header" id="header">
+    <div class="header__inner">
+        <div class="h__left">
+            <div class="h__menu">
+                <svg class="menu" id="open-menu">
+                    <use xlink:href="{% static 'img/sprite.svg' %}#menu"></use>
+                </svg>
+                <svg class="close" id="close-menu">
+                    <use xlink:href="{% static 'img/sprite.svg' %}#close"></use>
+                </svg>
+            </div>
+            <div class="h__search" style="display: none;">
+                <svg>
+                    <use xlink:href="{% static 'img/sprite.svg' %}#search"></use>
+                </svg>
+            </div>
+            <div class="h__logo">
+                <a href="/"><span class="get">jet</span><span class="mov">movie</span></a>
+                <div class="beta">BETA</div>
+            </div>
+        </div>
+        <div class="h__right">
+            <div class="h__update" id="header-get-film">
+                <svg>
+                    <use xlink:href="{% static 'img/sprite.svg' %}#update"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+</header>

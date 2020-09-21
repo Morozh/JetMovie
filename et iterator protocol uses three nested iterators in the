@@ -1,0 +1,238 @@
+Help on QuerySet in module django.db.models.query object:
+
+class QQuueerryySSeett(builtins.object)
+ |  QuerySet(model=None, query=None, using=None, hints=None)
+ |  
+ |  Represent a lazy database lookup for a set of objects.
+ |  
+ |  Methods defined here:
+ |  
+ |  ____aanndd____(self, other)
+ |  
+ |  ____bbooooll____(self)
+ |  
+ |  ____ddeeeeppccooppyy____(self, memo)
+ |      Don't populate the QuerySet's cache.
+ |  
+ |  ____ggeettiitteemm____(self, k)
+ |      Retrieve an item or slice from the set of results.
+ |  
+ |  ____ggeettssttaattee____(self)
+ |  
+ |  ____iinniitt____(self, model=None, query=None, using=None, hints=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ____iitteerr____(self)
+ |      The queryset iterator protocol uses three nested iterators in the
+ |      default case:
+ |          1. sql.compiler.execute_sql()
+ |             - Returns 100 rows at time (constants.GET_ITERATOR_CHUNK_SIZE)
+ |               using cursor.fetchmany(). This part is responsible for
+ |               doing some column masking, and returning the rows in chunks.
+ |          2. sql.compiler.results_iter()
+ |             - Returns one row at time. At this point the rows are still just
+ |               tuples. In some cases the return values are converted to
+ |               Python values at this location.
+ |          3. self.iterator()
+ |             - Responsible for turning the rows into model objects.
+ |  
+ |  ____lleenn____(self)
+ |  
+ |  ____oorr____(self, other)
+ |  
+ |  ____rreepprr____(self)
+ |      Return repr(self).
+ |  
+ |  ____sseettssttaattee____(self, state)
+ |  
+ |  aaggggrreeggaattee(self, *args, **kwargs)
+ |      Return a dictionary containing the calculations (aggregation)
+ |      over the current queryset.
+ |      
+ |      If args is present the expression is passed as a kwarg using
+ |      the Aggregate object's default alias.
+ |  
+ |  aallll(self)
+ |      Return a new QuerySet that is a copy of the current one. This allows a
+ |      QuerySet to proxy for a model manager in some cases.
+ |  
+ |  aannnnoottaattee(self, *args, **kwargs)
+ |      Return a query set in which the returned objects have been annotated
+ |      with extra data or aggregations.
+ |  
+ |  bbuullkk__ccrreeaattee(self, objs, batch_size=None, ignore_conflicts=False)
+ |      Insert each of the instances into the database. Do *not* call
+ |      save() on each of the instances, do not send any pre/post_save
+ |      signals, and do not set the primary key attribute if it is an
+ |      autoincrement field (except if features.can_return_rows_from_bulk_insert=True).
+ |      Multi-table models are not supported.
+ |  
+ |  bbuullkk__uuppddaattee(self, objs, fields, batch_size=None)
+ |      Update the given fields in each of the given objects in the database.
+ |  
+ |  ccoommpplleexx__ffiilltteerr(self, filter_obj)
+ |      Return a new QuerySet instance with filter_obj added to the filters.
+ |      
+ |      filter_obj can be a Q object or a dictionary of keyword lookup
+ |      arguments.
+ |      
+ |      This exists to support framework features such as 'limit_choices_to',
+ |      and usually it will be more natural to use other methods.
+ |  
+ |  ccoouunntt(self)
+ |      Perform a SELECT COUNT() and return the number of records as an
+ |      integer.
+ |      
+ |      If the QuerySet is already fully cached, return the length of the
+ |      cached results set to avoid multiple SELECT COUNT(*) calls.
+ |  
+ |  ccrreeaattee(self, **kwargs)
+ |      Create a new object with the given kwargs, saving it to the database
+ |      and returning the created object.
+ |  
+ |  ddaatteess(self, field_name, kind, order='ASC')
+ |      Return a list of date objects representing all available dates for
+ |      the given field_name, scoped to 'kind'.
+ |  
+ |  ddaatteettiimmeess(self, field_name, kind, order='ASC', tzinfo=None)
+ |      Return a list of datetime objects representing all available
+ |      datetimes for the given field_name, scoped to 'kind'.
+ |  
+ |  ddeeffeerr(self, *fields)
+ |      Defer the loading of data for certain fields until they are accessed.
+ |      Add the set of deferred fields to any existing set of deferred fields.
+ |      The only exception to this is if None is passed in as the only
+ |      parameter, in which case removal all deferrals.
+ |  
+ |  ddeelleettee(self)
+ |      Delete the records in the current QuerySet.
+ |  
+ |  ddiiffffeerreennccee(self, *other_qs)
+ |  
+ |  ddiissttiinncctt(self, *field_names)
+ |      Return a new QuerySet instance that will select only distinct results.
+ |  
+ |  eeaarrlliieesstt(self, *fields)
+ |  
+ |  eexxcclluuddee(self, *args, **kwargs)
+ |      Return a new QuerySet instance with NOT (args) ANDed to the existing
+ |      set.
+ |  
+ |  eexxiissttss(self)
+ |  
+ |  eexxppllaaiinn(self, *, format=None, **options)
+ |  
+ |  eexxttrraa(self, select=None, where=None, params=None, tables=None, order_by=None, select_params=None)
+ |      Add extra SQL fragments to the query.
+ |  
+ |  ffiilltteerr(self, *args, **kwargs)
+ |      Return a new QuerySet instance with the args ANDed to the existing
+ |      set.
+ |  
+ |  ffiirrsstt(self)
+ |      Return the first object of a query or None if no match is found.
+ |  
+ |  ggeett(self, *args, **kwargs)
+ |      Perform the query and return a single object matching the given
+ |      keyword arguments.
+ |  
+ |  ggeett__oorr__ccrreeaattee(self, defaults=None, **kwargs)
+ |      Look up an object with the given kwargs, creating one if necessary.
+ |      Return a tuple of (object, created), where created is a boolean
+ |      specifying whether an object was created.
+ |  
+ |  iinn__bbuullkk(self, id_list=None, *, field_name='pk')
+ |      Return a dictionary mapping each of the given IDs to the object with
+ |      that ID. If `id_list` isn't provided, evaluate the entire QuerySet.
+ |  
+ |  iinntteerrsseeccttiioonn(self, *other_qs)
+ |  
+ |  iitteerraattoorr(self, chunk_size=2000)
+ |      An iterator over the results from applying this QuerySet to the
+ |      database.
+ |  
+ |  llaasstt(self)
+ |      Return the last object of a query or None if no match is found.
+ |  
+ |  llaatteesstt(self, *fields)
+ |  
+ |  nnoonnee(self)
+ |      Return an empty QuerySet.
+ |  
+ |  oonnllyy(self, *fields)
+ |      Essentially, the opposite of defer(). Only the fields passed into this
+ |      method and that are not already specified as deferred are loaded
+ |      immediately when the queryset is evaluated.
+ |  
+ |  oorrddeerr__bbyy(self, *field_names)
+ |      Return a new QuerySet instance with the ordering changed.
+ |  
+ |  pprreeffeettcchh__rreellaatteedd(self, *lookups)
+ |      Return a new QuerySet instance that will prefetch the specified
+ |      Many-To-One and Many-To-Many related objects when the QuerySet is
+ |      evaluated.
+ |      
+ |      When prefetch_related() is called more than once, append to the list of
+ |      prefetch lookups. If prefetch_related(None) is called, clear the list.
+ |  
+ |  rraaww(self, raw_query, params=None, translations=None, using=None)
+ |  
+ |  rreessoollvvee__eexxpprreessssiioonn(self, *args, **kwargs)
+ |  
+ |  rreevveerrssee(self)
+ |      Reverse the ordering of the QuerySet.
+ |  
+ |  sseelleecctt__ffoorr__uuppddaattee(self, nowait=False, skip_locked=False, of=())
+ |      Return a new QuerySet instance that will select objects with a
+ |      FOR UPDATE lock.
+ |  
+ |  sseelleecctt__rreellaatteedd(self, *fields)
+ |      Return a new QuerySet instance that will select related objects.
+ |      
+ |      If fields are specified, they must be ForeignKey fields and only those
+ |      related objects are included in the selection.
+ |      
+ |      If select_related(None) is called, clear the list.
+ |  
+ |  uunniioonn(self, *other_qs, all=False)
+ |  
+ |  uuppddaattee(self, **kwargs)
+ |      Update all elements in the current QuerySet, setting all the given
+ |      fields to the appropriate values.
+ |  
+ |  uuppddaattee__oorr__ccrreeaattee(self, defaults=None, **kwargs)
+ |      Look up an object with the given kwargs, updating one with defaults
+ |      if it exists, otherwise create a new one.
+ |      Return a tuple (object, created), where created is a boolean
+ |      specifying whether an object was created.
+ |  
+ |  uussiinngg(self, alias)
+ |      Select which database this QuerySet should execute against.
+ |  
+ |  vvaalluueess(self, *fields, **expressions)
+ |  
+ |  vvaalluueess__lliisstt(self, *fields, flat=False, named=False)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |  
+ |  aass__mmaannaaggeerr() from builtins.type
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties defined here:
+ |  
+ |  ddbb
+ |      Return the database used if this query is executed now.
+ |  
+ |  oorrddeerreedd
+ |      Return True if the QuerySet is ordered -- i.e. has an order_by()
+ |      clause or a default ordering on the model (or is empty).
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  ____ddiicctt____
+ |      dictionary for instance variables (if defined)
+ |  
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object (if defined)

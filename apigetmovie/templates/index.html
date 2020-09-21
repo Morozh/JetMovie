@@ -1,0 +1,112 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <form id="get-film" method="POST">
+        <div>
+            <button class="btn btn-icon" type="submit">
+                <div class="icon">
+                    <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#update"></use>
+                    </svg>
+                </div>
+                <div class="text">
+                    Сгенерировать фильм
+                </div>
+            </button>
+        </div>
+    </form>
+    <div class="generated-film scale07" id="generated-film">
+        <div class="generated-film__backdrop">
+            <div class="play__btn">
+                <svg>
+                    <use xlink:href="{% static 'img/sprite.svg' %}#play"></use>
+                </svg>
+            </div>
+        </div>
+        <div class="generated-film__video">
+            <iframe width="560" height="315" src=""
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="generated-film__info">
+            <div class="generated-film__info--img">
+                <img src="" alt="">
+            </div>
+            <div class="generated-film__info--detail">
+
+                <div class="genre">
+                </div>
+                <div class="title">
+                </div>
+                <div class="runtime">
+                    <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#clock"></use>
+                    </svg>
+                    <span class="time"></span>
+                    <span class="countries"></span>, <span class="release-date"></span> г.
+                </div>
+                <div class="ratings">
+                    <div class="votes ratings__item">
+                        <svg>
+                            <use xlink:href="{% static 'img/sprite.svg' %}#fav"></use>
+                        </svg>
+                        <div class="txt">
+                            <div class="top">85%</div>
+                            <div class="bot">29,412</div>
+                        </div>
+                    </div>
+                    <div class="rating ratings__item" style="display: none;">
+                        <svg>
+                            <use xlink:href="{% static 'img/sprite.svg' %}#star"></use>
+                        </svg>
+                        <div class="txt">
+                            <div class="top">7.9</div>
+                            <div class="bot">Популярность</div>
+                        </div>
+                    </div>
+                    <div class="generated-film__fav-buttons">
+                        <button class="btn btn--red" id="add-to-fav">
+                            <div class="text">
+                                Добавить в избранное
+                                <div class="loader-wrap">
+                                    <div class="loader">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                        <button class="btn btn--red" id="remove-from-fav">
+                            <div class="text">
+                                Удалить из избранного
+                                <div class="loader-wrap">
+                                    <div class="loader">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="block-ttl">Описание</div>
+        <div class="generated-film__overview"></div>
+        <div class="block-ttl">Каст</div>
+        <div class="generated-film__cast">
+            <div class="cast-item">
+                <div class="img"></div>
+                <div class="actor-name">Ben Afflek</div>
+                <div class="character-name">Bob Rodgrigez</div>
+            </div>
+        </div>
+    </div>
+    <p style="display: none">
+        {% if user.is_authenticated  %}<a href="">{{ user.username }}</a>
+        {% else %} <a href="/login">Войти</a> <a href="/auth">Зарегистрироваться</a>
+        {% endif %}
+    </p>
+</div>
+{% endblock %}
