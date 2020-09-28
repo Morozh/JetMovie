@@ -10,4 +10,4 @@
 https://developers.themoviedb.org/3
 # Documentation
 Запуск проекта (Локально) 
-# python manage.py runserver
+python manage.py runserver
